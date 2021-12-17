@@ -88,7 +88,7 @@ Library
   -- FIXME armel or mispel is also little endian.
   -- might be a good idea to also add a runtime autodetect mode.
   -- ARCH_ENDIAN_UNKNOWN
-  if (arch(i386) || arch(x86_64) || arch(arm64))
+  if (arch(i386) || arch(x86_64) || arch(ARM))
     CPP-options:     -DARCH_IS_LITTLE_ENDIAN
   if os(windows)
     Other-modules:   Data.Memory.MemMap.Windows
