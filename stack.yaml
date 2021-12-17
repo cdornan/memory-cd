@@ -1,3 +1,11 @@
-resolver: lts-18.18
+resolver: nightly-2021-12-16
+compiler: ghc-9.2.1
+
+ghc-options:
+  basement: -j8
+
 packages:
 - '.'
+
+extra-deps:
+- basement-cd-0.0.12.1

@@ -1,3 +1,7 @@
+## 0.16.0.1
+
+* Fix for GHC 9.2.1/base-4.16.0.0
+
 ## 0.14.18
 
 * Branch/Release Snafu

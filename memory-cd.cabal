@@ -1,5 +1,5 @@
 Name:                memory-cd
-version:             0.16.0
+version:             0.16.0.1
 Synopsis:            memory and related abstraction stuff
 Description:
     Chunk of memory, polymorphic byte array management and manipulation
@@ -72,6 +72,7 @@ Library
                      Data.Memory.Internal.Imports
                      Data.Memory.Hash.SipHash
                      Data.Memory.Hash.FNV
+                     Data.Memory.HeadHackageUtils
                      Data.ByteArray.Pack.Internal
                      Data.ByteArray.Types
                      Data.ByteArray.Bytes
@@ -82,12 +83,12 @@ Library
   if impl(ghc < 8.0)
     buildable: False
   else
-    build-depends:   base < 4.16
-                   , ghc-prim < 0.8
+    build-depends:   base
+                   , ghc-prim
   -- FIXME armel or mispel is also little endian.
   -- might be a good idea to also add a runtime autodetect mode.
   -- ARCH_ENDIAN_UNKNOWN
-  if (arch(i386) || arch(x86_64))
+  if (arch(i386) || arch(x86_64) || arch(arm64))
     CPP-options:     -DARCH_IS_LITTLE_ENDIAN
   if os(windows)
     Other-modules:   Data.Memory.MemMap.Windows
@@ -103,7 +104,7 @@ Library
     Build-depends:   deepseq >= 1.1
   if flag(support_foundation) || flag(support_basement)
     CPP-options:     -DWITH_BASEMENT_SUPPORT
-    Build-depends:   basement >= 0.0.7
+    Build-depends:   basement-cd
     exposed-modules: Data.ByteArray.Sized
 
   ghc-options:       -Wall -fwarn-tabs
@@ -122,7 +123,7 @@ Test-Suite test-memory
     build-depends:   base
   Build-Depends:     bytestring
                    , memory
-                   , basement >= 0.0.7
+                   , basement-cd
                    , foundation
   ghc-options:       -Wall -fno-warn-orphans -fno-warn-missing-signatures -threaded
   default-language:  Haskell2010
